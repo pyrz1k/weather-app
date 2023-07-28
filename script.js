@@ -8,7 +8,7 @@ const popupClose = document.getElementById("close")
 
 let defaultData = {
     city:"Moscow",
-    // feelslike: 0,
+    feelslike: 0,
     temperature: 0,
     observationTime: "00:00 AM",
     isDay: "yes",
@@ -31,7 +31,7 @@ const fetchData = async () => {
 
     const {
         current: {
-            // feelslike,
+            feelslike,
             cloudcover, 
             temperature, 
             observation_time: observationTime, 
