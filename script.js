@@ -103,7 +103,7 @@ const renderProperties = (properties) => {
     return Object.values(properties).map(({title, value, icon}) =>{
         return `<div class="property">
                 <div class="property-icon">
-                    <img src="img/icons/${icon}" alt="">
+                    <img src="./img/icons/${icon}" alt="">
                 </div>
                 <div class="property-info">
                     <div class="property-info__value">${value}</div>
