@@ -7,8 +7,8 @@ const form = document.getElementById("form")
 const popupClose = document.getElementById("close")
 
 let defaultData = {
-    city:"",
-    feelslike: 0,
+    city:"Moscow",
+    // feelslike: 0,
     temperature: 0,
     observationTime: "00:00 AM",
     isDay: "yes",
@@ -26,14 +26,12 @@ let defaultData = {
 
 // асинхронная функция (функция в фоновом режиме)
 const fetchData = async () => {   
-    const query = localStorage.getItem('query') || defaultData.city
-    try{
-        const result = await fetch(`${link}&query=${query}`);
+    const result = await fetch(`${link}&query=Moscow`);
     const data = await result.json();
 
     const {
         current: {
-            feelslike, 
+            // feelslike,
             cloudcover, 
             temperature, 
             observation_time: observationTime, 
@@ -57,7 +55,6 @@ const fetchData = async () => {
     defaultData = {
         ...defaultData,
         city,
-        feelslike,
         temperature,
         observationTime,
         isDay,
@@ -99,11 +96,8 @@ const fetchData = async () => {
 
     renderComponent()
     }
-    catch(err){
-        console.log(err)
-    }
 
-}
+
 
 const renderProperties = (properties) => {
     return Object.values(properties).map(({title, value, icon}) =>{
@@ -122,9 +116,9 @@ const renderProperties = (properties) => {
 const markUp = () =>{
     const { city, weatherIcon, weatherDescription, observationTime, temperature, isDay, properties} = defaultData;
 
-    const containerClass = isDay === "yes" ? "is-day" : "";
+      const containerClass = isDay === "yes" ? "is-day" : "";
 
-    return `<div class="container ${containerClass}">
+  return `<div class="container ${containerClass}">
                 <div class="top">
                     <div class="city">
                         <div class="city-subtitle">Weather Today in</div>
@@ -174,7 +168,6 @@ const handleSubmit = (e) =>{
 
     if (!value) return null
        
-    localStorage.setItem('query', value )
     fetchData()
     toggleClassPopup()
 
